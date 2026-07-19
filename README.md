@@ -63,3 +63,95 @@ To enable complex Time Intelligence functions (QoQ growth, YTD totals), a dedica
 ## 🧮 Key DAX Measures & Calculations
 
 Below are the core DAX measures developed to power the analytics and KPIs.
+
+### Revenue & Pipeline Totals
+These measures aggregate the actual closing values versus the potential pipeline value.
+*   Total Realized Revenue: (Used close_value as this represents actual won deals).
+   
+    Total Realized Revenue = SUM('Sales Pipeline'[close_value])
+    
+*   Total Potential Pipeline:
+   
+    Total Potential Pipeline = SUM('Sales Pipeline'[pipeline_value])
+    
+### Performance Metrics
+*   Win Rate: Calculated as the number of "Won" deals divided by the total number of decided deals (Won + Lost). This correctly excludes "Engaging" (open) deals.
+   
+    Win Rate = 
+    DIVIDE(
+        CALCULATE(COUNTROWS('Sales Pipeline'), 'Sales Pipeline'[deal_stage] = "Won"),
+        CALCULATE(COUNTROWS('Sales Pipeline'), 'Sales Pipeline'[deal_stage] IN {"Won", "Lost"})
+    )
+    
+*   Average Days to Close: Measures sales cycle efficiency by finding the average difference between the engagement date and close date.
+   
+    Avg Days to Close = AVERAGE('Sales Pipeline'[close_date] - 'Sales Pipeline'[engage_date])
+    
+### Quarter-over-Quarter (QoQ) Trends
+These measures utilize time intelligence functions to compare current revenue against the previous quarter.
+*   Revenue Previous Quarter:
+   
+    Revenue PQ = CALCULATE([Total Realized Revenue], PREVIOUSQUARTER('DateTable'[Date]))
+    
+*   Revenue QoQ Growth:
+   
+    Revenue QoQ Growth = [Total Realized Revenue] - [Revenue PQ]
+    
+### Pipeline Concentration (Top 10 Analysis)
+To visualize what percentage of the pipeline comes from the top 10 accounts, a specific modeling technique was required. Because TOPN cannot be used directly in a standard Pie/Donut chart to show "Top 10 vs. Others", three distinct measures were created:
+
+1.  Top 10 Accounts Pipeline Value:
+   
+    Top 10 Accounts Pipeline = 
+    CALCULATE(
+        [Total Potential Pipeline],
+        TOPN(
+            10,
+            ALL('Accounts'[account]),
+            [Total Potential Pipeline], DESC
+        )
+    )
+    
+2.  Other Accounts Pipeline Value: (This calculates the remaining pipeline to allow the chart to act as a part-to-whole visualization).
+   
+    Other Accounts Pipeline = [Total Potential Pipeline] - [Top 10 Accounts Pipeline]
+    
+3.  % Pipeline Concentration (Top 10): (Used for KPI cards).
+   
+    % Pipeline Concentration (Top 10) = DIVIDE([Top 10 Accounts Pipeline], [Total Potential Pipeline], 0)
+    
+### General KPIs
+*   Total Deals (Count): A distinct count of opportunities to show deal volume.
+   
+    No. of Deals = DISTINCTCOUNT('Sales Pipeline'[opportunity_id])
+    
+*   Total Product Models: A distinct count of unique product offerings.
+   
+    Total Product Models = DISTINCTCOUNT('Product Table'[product_id])
+    
+---
+
+## 📈 Dashboard Visualizations
+
+The final report includes the following visualizations to answer the key business questions:
+
+*   KPI Cards: Total Revenue, Total Pipeline, Win Rate %.
+*   Line & Clustered Column Chart: Total Revenue and Number of Deals by Year/Quarter to show trends over time.
+*   Stacked Bar Chart: Total Revenue won by each Regional Sales Office.
+*   Donut Chart: Visualizing Pipeline Concentration—comparing the **Top 10 Accounts Pipeline** vs. **Other Accounts PipelineClustered Bar Chart:Chart:** Showing the Number of Deals sitting at each deal_stage of the sales funnel (Prospect, Negotiation, Won, etc.), sorted logicalTable/Matrix:atrix:** Detailed breakdown by Sales Agent, showing Revenue, Win Rate, and Deal Cycle TiSlicers:icers:** Interactive filters for Year, Quarter, Month, and Regional Office.
+
+---
+
+## 🚀 How to View
+1.  Download the .pbix file fProject Files & Links Links** section above.
+2.  Open it using Power BI Desktop (ensure you have the latest version).
+3.  If prompted, adjust the data source settings to point to your local copies of the CSV/Excel dataset files (though the data is embedded in the PBIX).
+
+---
+
+## 🤝 Contact
+If you have any questions or suggestions regarding this analysis, feel free to reach out.
+
+*   Author: [Joseph Chibueze]
+*   Gmail: [josephchibuezechinonso@gmail.com]
+*   LinkedIn: [https://www.linkedin.com/in/joseph-chibueze-7965a6205]
