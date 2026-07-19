@@ -66,7 +66,7 @@ Below are the core DAX measures developed to power the analytics and KPIs.
 
 ### Revenue & Pipeline Totals
 These measures aggregate the actual closing values versus the potential pipeline value.
-*   Total Realized Revenue: (Used close_value as this represents actual won deals).
+*   Total Pipeline: (Used close_value as this represents actual won deals).
    
     Total Realized Revenue = SUM('Sales Pipeline'[close_value])
     
@@ -91,11 +91,11 @@ These measures aggregate the actual closing values versus the potential pipeline
 These measures utilize time intelligence functions to compare current revenue against the previous quarter.
 *   Revenue Previous Quarter:
    
-    Revenue PQ = CALCULATE([Total Realized Revenue], PREVIOUSQUARTER('DateTable'[Date]))
+    Revenue PQ = CALCULATE([Total Pipeline Revenue], PREVIOUSQUARTER('DateTable'[Date]))
     
 *   Revenue QoQ Growth:
    
-    Revenue QoQ Growth = [Total Realized Revenue] - [Revenue PQ]
+    Revenue QoQ Growth = [Total Revenue] - [Revenue PQ]
     
 ### Pipeline Concentration (Top 10 Analysis)
 To visualize what percentage of the pipeline comes from the top 10 accounts, a specific modeling technique was required. Because TOPN cannot be used directly in a standard Pie/Donut chart to show "Top 10 vs. Others", three distinct measures were created:
@@ -103,23 +103,13 @@ To visualize what percentage of the pipeline comes from the top 10 accounts, a s
 1.  Top 10 Accounts Pipeline Value:
    
     Top 10 Accounts Pipeline = 
-    CALCULATE(
-        [Total Potential Pipeline],
-        TOPN(
-            10,
-            ALL('Accounts'[account]),
-            [Total Potential Pipeline], DESC
-        )
-    )
+  Top 10 Account Pipeline = CALCULATE([Total Pipeline],TOPN(10,ALL(sales_pipeline[account]),[Total Pipeline],DESC))
     
 2.  Other Accounts Pipeline Value: (This calculates the remaining pipeline to allow the chart to act as a part-to-whole visualization).
    
-    Other Accounts Pipeline = [Total Potential Pipeline] - [Top 10 Accounts Pipeline]
+   Other Account Pipeline = [Total Pipeline]-[Top 10 Account Pipeline]
     
-3.  % Pipeline Concentration (Top 10): (Used for KPI cards).
-   
-    % Pipeline Concentration (Top 10) = DIVIDE([Top 10 Accounts Pipeline], [Total Potential Pipeline], 0)
-    
+
 ### General KPIs
 *   Total Deals (Count): A distinct count of opportunities to show deal volume.
    
