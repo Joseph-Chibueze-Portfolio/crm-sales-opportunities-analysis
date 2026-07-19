@@ -27,7 +27,7 @@ Key questions addressed by this dashboard:
 *(https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/sales_pipeline.csv)*
 *(https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/sales_teams.csv)*
 
-*   🖼️ Dashboard Screenshot: [View Dashboard Image] [https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES%20DASHBOARD.png]
+*   🖼️ Dashboard Screenshot: [View Dashboard Image] [https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES.png]
 *   📋 Power BI Report File (.pbix): [Download PBIX File] [https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES.pbix]
 
 ---
