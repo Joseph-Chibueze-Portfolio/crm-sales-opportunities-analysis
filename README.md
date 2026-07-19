@@ -1,4 +1,4 @@
-# crm-sales-opportunities-analysis Power BI Dashboard
+# 📊 CRM Sales Opportunities Analysis Power BI Dashboard
 
 ## Project Overview
 This project involves the end-to-end development of a Business Intelligence dashboard to analyze a global CRM Sales Opportunities dataset. The goal was to transform raw data into actionable insights, enabling stakeholders to track key performance indicators (KPIs), monitor sales trends, identify top-performing products and accounts, and analyze the sales pipeline health.
@@ -21,12 +21,14 @@ Key questions addressed by this dashboard:
 
 ---
 
-## 📂 Project Files & Links
-*(Replace the placeholders below with your actual published links)*
+## 📂 Project Files & Links (Original Dataset)
+*((https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/accounts.csv)*
+*(https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/products.csv))*
+*(https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/sales_pipeline.csv)*
+*(https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/sales_teams.csv)*
 
 *   🖼️ Dashboard Screenshot: [View Dashboard Image] [https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES%20DASHBOARD.png]
-*   📋 Power BI Report File (.pbix): [[Download PBIX File] [Paste Link to your .pbix file download here](https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES.pbix)]
-*   💾 Original Dataset: [View Source Data] [Paste Link to where you found the dataset here]
+*   📋 Power BI Report File (.pbix): [Download PBIX File] [https://github.com/Joseph-Chibueze-Portfolio/crm-sales-opportunities-analysis/blob/main/CRM%20SALES%20OPPORTUNITIES.pbix]
 
 ---
 
